@@ -51,7 +51,7 @@ database.ref().on("child_added", function(snapshot) {
 
   //start date
   var startCell = $("<td>");
-  startCell.text(sv.startDate);
+  startCell.text(moment(sv.startDate).format('L'));
   newRow.append(startCell);
 
   //months worked
