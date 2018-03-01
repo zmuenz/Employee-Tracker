@@ -33,44 +33,6 @@ $("#submit").on('click', function(event) {
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
 
-  // monthsWorked = 
-  // totalBilled = monthsWorked * rate;
-
-  //container row
-  var newRow = $("<tr>");
-
-  //name 
-  var nameCell = $("<td>");
-  nameCell.text(name);
-  newRow.append(nameCell);
-
-  //role 
-  var roleCell = $("<td>");
-  roleCell.text(role);
-  newRow.append(roleCell);
-
-  //start date
-  var startCell = $("<td>");
-  startCell.text(startDate);
-  newRow.append(startCell);
-
-  //months worked
-  var monthsWorkedCell = $("<td>");
-  monthsWorkedCell.text(monthsWorked);
-  newRow.append(monthsWorkedCell);
-
-  //rate
-  var rateCell = $("<td>");
-  rateCell.text(rate);
-  newRow.append(rateCell);
-
-  //total
-  var totalCell = $("<td>");
-  totalCell.text(totalBilled);
-  newRow.append(totalCell);
-
-  $("#employee-container").prepend(newRow);
-
 });
 
 database.ref().on("child_added", function(snapshot) {
@@ -107,7 +69,7 @@ database.ref().on("child_added", function(snapshot) {
   totalCell.text(totalBilled);
   newRow.append(totalCell);
 
-  $("#employee-container").prepend(newRow);
+  $("#employee-container").append(newRow);
 
 }, function(errorObject) {
   console.log("Errors handled: " + errorObjecxt.code);
