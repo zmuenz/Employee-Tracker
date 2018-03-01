@@ -56,7 +56,7 @@ database.ref().on("child_added", function(snapshot) {
 
   //months worked
   var start = moment(sv.startDate);
-  var now = moment(sv.dateAdded);
+  var now = moment();
   monthsWorked = now.diff(start, 'months');
   var monthsWorkedCell = $("<td>");
   monthsWorkedCell.text(monthsWorked);
