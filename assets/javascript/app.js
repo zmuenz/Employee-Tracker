@@ -64,13 +64,13 @@ database.ref().on("child_added", function(snapshot) {
 
   //rate
   var rateCell = $("<td>");
-  rateCell.text(sv.rate);
+  rateCell.text("$"+sv.rate);
   newRow.append(rateCell);
 
   //total
   totalBilled = monthsWorked * sv.rate;
   var totalCell = $("<td>");
-  totalCell.text(totalBilled);
+  totalCell.text("$"+totalBilled);
   newRow.append(totalCell);
 
   $("#employee-container").append(newRow);
