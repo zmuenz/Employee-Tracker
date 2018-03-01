@@ -55,6 +55,9 @@ database.ref().on("child_added", function(snapshot) {
   newRow.append(startCell);
 
   //months worked
+  var start = moment(sv.startDate);
+  var now = moment(sv.dateAdded);
+  monthsWorked = now.diff(start, 'months');
   var monthsWorkedCell = $("<td>");
   monthsWorkedCell.text(monthsWorked);
   newRow.append(monthsWorkedCell);
@@ -65,6 +68,7 @@ database.ref().on("child_added", function(snapshot) {
   newRow.append(rateCell);
 
   //total
+  totalBilled = monthsWorked * sv.rate;
   var totalCell = $("<td>");
   totalCell.text(totalBilled);
   newRow.append(totalCell);
