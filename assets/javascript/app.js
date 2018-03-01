@@ -72,3 +72,43 @@ $("#submit").on('click', function(event) {
   $("#employee-container").prepend(newRow);
 
 });
+
+database.ref().on("child_added", function(snapshot) {
+  var sv = snapshot.val();
+
+  var newRow = $("<tr>");
+  //name 
+  var nameCell = $("<td>");
+  nameCell.text(sv.name);
+  newRow.append(nameCell);
+
+  //role 
+  var roleCell = $("<td>");
+  roleCell.text(sv.role);
+  newRow.append(roleCell);
+
+  //start date
+  var startCell = $("<td>");
+  startCell.text(sv.startDate);
+  newRow.append(startCell);
+
+  //months worked
+  var monthsWorkedCell = $("<td>");
+  monthsWorkedCell.text(monthsWorked);
+  newRow.append(monthsWorkedCell);
+
+  //rate
+  var rateCell = $("<td>");
+  rateCell.text(sv.rate);
+  newRow.append(rateCell);
+
+  //total
+  var totalCell = $("<td>");
+  totalCell.text(totalBilled);
+  newRow.append(totalCell);
+
+  $("#employee-container").prepend(newRow);
+
+}, function(errorObject) {
+  console.log("Errors handled: " + errorObjecxt.code);
+});
