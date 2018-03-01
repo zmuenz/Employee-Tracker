@@ -9,6 +9,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var database = firebase.database();
+
 var name = "";
 var role = "";
 var startDate = "";
@@ -22,27 +24,51 @@ $("#submit").on('click', function(event) {
   role = $("#role").val().trim();
   startDate = $("#start-date").val().trim();
   rate = $("#monthly-rate").val().trim();
+
+  database.ref().push({
+    name: name,
+    role: role,
+    startDate: startDate,
+    rate: rate,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
   // monthsWorked = 
   // totalBilled = monthsWorked * rate;
+
+  //container row
   var newRow = $("<tr>");
+
+  //name 
   var nameCell = $("<td>");
   nameCell.text(name);
-  nameCell.append(newRow);
+  newRow.append(nameCell);
+
+  //role 
   var roleCell = $("<td>");
   roleCell.text(role);
-  roleCell.append(newRow);
+  newRow.append(roleCell);
+
+  //start date
   var startCell = $("<td>");
   startCell.text(startDate);
-  startCell.append(newRow);
-  var rateCell = $("<td>");
-  rateCell.text(rate);
-  rateCell.append(newRow);
+  newRow.append(startCell);
+
+  //months worked
   var monthsWorkedCell = $("<td>");
   monthsWorkedCell.text(monthsWorked);
-  monthsWorkedCell.append(newRow);
+  newRow.append(monthsWorkedCell);
+
+  //rate
+  var rateCell = $("<td>");
+  rateCell.text(rate);
+  newRow.append(rateCell);
+
+  //total
   var totalCell = $("<td>");
   totalCell.text(totalBilled);
-  totalCell.append(newRow);
+  newRow.append(totalCell);
 
-  $("#employee-container").prepend();
-})
+  $("#employee-container").prepend(newRow);
+
+});
